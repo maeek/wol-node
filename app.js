@@ -6,11 +6,11 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 const PORT = process.env.PORT || 8080;
-const WOL_IP = process.env.WOL_IP;
+const WOL_BROADCAST = process.env.WOL_BROADCAST;
 const WOL_MAC = process.env.WOL_MAC;
 
-if (!WOL_IP || !WOL_MAC) {
-    console.error('[ERROR] WOL_IP or WOL_MAC environment variable is not specified');
+if (!WOL_BROADCAST || !WOL_MAC) {
+    console.error('[ERROR] WOL_BROADCAST or WOL_MAC environment variable is not specified');
     process.exit(1);
 }
 
@@ -22,7 +22,7 @@ app.get('/', (_, res) => {
 
 app.post('/', (_, res) => {
     try {
-        const wol = spawn('wakeonlan', ['-i', WOL_IP, WOL_MAC]);
+        const wol = spawn('wakeonlan', ['-i', WOL_BROADCAST, WOL_MAC]);
 
         wol.stdout.on('data', (data) => {
             console.log(`[INFO]: ${data}`);
@@ -50,7 +50,7 @@ app.post('/', (_, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`[INFO] Received IP: ${WOL_IP}`);
+    console.log(`[INFO] Received IP: ${WOL_BROADCAST}`);
     console.log(`[INFO] Received MAC: ${WOL_MAC}`);
     console.log(`[INFO] Server started on port ${PORT}`);
 });

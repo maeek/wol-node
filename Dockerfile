@@ -1,7 +1,7 @@
 FROM node:latest
 
 ENV PORT=8080
-ENV WOL_IP=""
+ENV WOL_BROADCAST=""
 ENV WOL_MAC=""
 
 RUN apt update \
