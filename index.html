@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wake on Lan</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: #0E1F34;
+        }
+        
+        button {
+            border: 0;
+            background: transparent;
+            color: #FFF;
+            cursor: pointer;
+            font-size: 50px;
+            outline: none;
+            height: 100vh;
+            width: 100vw;
+        }
+        button:hover, button:focus {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="wol()">Wake PC</button>
+</body>
+<script>
+    function wol() {
+        fetch('/', {
+            method: 'POST'
+        })
+        .then(res => {
+            if (res.ok) console.log('Waking up...');
+            else console.log('Error');
+        })
+    };
+</script>
+</html>
