@@ -11,4 +11,4 @@ COPY ./* /srv/
 WORKDIR /srv
 RUN npm install
 
-ENTRYPOINT [ "npm", "run", "start"]
+CMD [ "npm", "run", "start"]
