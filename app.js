@@ -44,6 +44,7 @@ app.post('/', (_, res) => {
     catch(e) {
         console.error('[ERROR]: Unexpected error');
         console.error(e);
+        res.status(500).end();
     }
 
 });
